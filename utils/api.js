@@ -3,4 +3,5 @@ import { DECKS_STORAGE_KEY } from './_decks'
 
 export const getDecks = () => {
   return AsyncStorage.getItem(DECKS_STORAGE_KEY)
+    .then(results => JSON.parse(results))
 }
