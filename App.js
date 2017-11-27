@@ -9,6 +9,7 @@ import reducer from './reducers'
 import DeckList from './components/DeckList'
 import AddDeck from './components/AddDeck'
 import Deck from './components/Deck'
+import AddCard from './components/AddCard'
 import { clearData, setDummyData } from './utils/_decks'
 
 setDummyData()
@@ -53,7 +54,6 @@ const MainNavigator = StackNavigator({
   Home: {
     screen: Tabs,
     navigationOptions: {
-      title: 'UdaciCards',
       headerStyle: {
         color: '#fff'
       }
@@ -61,6 +61,16 @@ const MainNavigator = StackNavigator({
   },
   Deck: {
     screen: Deck,
+    navigationOptions: {
+      headerTintColor: '#fff',
+      headerStyle: {
+        marginTop: -20, // compensate for styling introduced by StackNavigator
+        backgroundColor: '#2c3e50',
+      }
+    }
+  },
+  AddCard: {
+    screen: AddCard,
     navigationOptions: {
       headerTintColor: '#fff',
       headerStyle: {

@@ -7,7 +7,7 @@ import { receiveDecks } from '../actions'
 
 class DeckList extends Component {
   static navigationOptions = {
-    title: 'UdaciCards'
+    headerBackTitle: 'UdaciCards'
   }
 
   componentDidMount () {

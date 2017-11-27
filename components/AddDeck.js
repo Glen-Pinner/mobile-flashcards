@@ -11,20 +11,20 @@ class AddDeck extends Component {
     title: ''
   }
 
-  onChangeText = title => {
+  onChangeTitle = title => {
     this.setState({ title })
   }
 
   onSubmit = () => {
     const { title } = this.state
 
-    // Dispatch to redux
+    // Dispatch to Redux
     this.props.dispatch(addDeck(title))
 
     // Reset local state
     this.setState(() => ({ title: ' ' }))
 
-    // navigate to Deck component
+    // Navigate to Deck component
     this.toDeck(title)
 
     // Update local store
@@ -59,7 +59,7 @@ class AddDeck extends Component {
         <Text style={styles.text}>What is the title of your new deck?</Text>
         <TextInput
           style={styles.input}
-          onChangeText={this.onChangeText}
+          onChangeText={this.onChangeTitle}
           placeholder='Deck Title'
           value={title}
         />

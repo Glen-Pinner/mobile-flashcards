@@ -3,6 +3,14 @@ import { View, Text, StyleSheet } from 'react-native'
 import TextButton from './TextButton'
 
 class Deck extends Component {
+  static navigationOptions = {
+    headerBackTitle: 'Add Card'
+  }
+
+  onAddCard = () => {
+    this.props.navigation.navigate('AddCard')
+  }
+
   render () {
     const { deck: { title, questions } } = this.props.navigation.state.params
 
@@ -11,7 +19,10 @@ class Deck extends Component {
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.cards}>{questions.length} cards</Text>
         <View style={styles.buttonContainer}>
-          <TextButton style={{ backgroundColor: 'transparent', color: 'black' }}>
+          <TextButton
+            onPress={this.onAddCard}
+            style={{ backgroundColor: 'transparent', color: 'black' }}
+          >
             Add Card
           </TextButton>
         </View>
