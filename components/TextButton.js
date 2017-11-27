@@ -13,14 +13,13 @@ const styles = StyleSheet.create({
   container: {
     borderWidth: 1,
     borderColor: 'black',
-    borderRadius: 5
+    borderRadius: 5,
   },
   text: {
     backgroundColor: 'black',
     color: 'white',
     fontSize: 18,
     fontWeight: 'bold',
-    textAlign: 'center',
     padding: 10,
     paddingLeft: 20,
     paddingRight: 20,

@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, StatusBar } from 'react-native'
-import { TabNavigator } from 'react-navigation'
+import { TabNavigator, StackNavigator } from 'react-navigation'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import { Constants } from 'expo'
@@ -8,6 +8,7 @@ import { Entypo } from '@expo/vector-icons'
 import reducer from './reducers'
 import DeckList from './components/DeckList'
 import AddDeck from './components/AddDeck'
+import Deck from './components/Deck'
 import { setDummyData } from './utils/_decks'
 
 setDummyData()
@@ -30,10 +31,10 @@ const Tabs = TabNavigator({
     }
   }
 }, {
+  navigationOptions: {
+    header: null
+  },
   tabBarOptions: {
-    // labelStyle: {
-    //   fontSize: 12
-    // },
     style: {
       backgroundColor: '#eee',
       shadowColor: 'rgba(0, 0, 0, 0.24)',
@@ -47,19 +48,45 @@ const Tabs = TabNavigator({
   }
 })
 
-const UdiciStatusBar = () => (
-  <View style={{ height: Constants.statusBarHeight }}>
-    <StatusBar />
-  </View>
-)
+const MainNavigator = StackNavigator({
+  Home: {
+    screen: Tabs,
+    navigationOptions: {
+      title: 'UdaciCards',
+      headerStyle: {
+        color: '#fff'
+      }
+    }
+  },
+  Deck: {
+    screen: Deck,
+    navigationOptions: {
+      headerTintColor: '#fff',
+      headerStyle: {
+        marginTop: -20, // compensate for styling introduced by StackNavigator
+        backgroundColor: '#2c3e50',
+      }
+    }
+  }
+}, {
+  navigationOptions: {}
+})
+
+const UdaciStatusBar = ({ backgroundColor, ...props }) => {
+  return (
+    <View style={{ backgroundColor, height: Constants.statusBarHeight }}>
+      <StatusBar translucent backgroundColor={backgroundColor} {...props} />
+    </View>
+  )
+}
 
 export default class App extends React.Component {
   render () {
     return (
       <Provider store={store}>
         <View style={{ flex: 1 }}>
-          <UdiciStatusBar />
-          <Tabs />
+          <UdaciStatusBar backgroundColor='#2c3e50' barStyle='light-content' />
+          <MainNavigator />
         </View>
       </Provider>
     )

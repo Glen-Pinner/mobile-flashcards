@@ -6,6 +6,10 @@ import { getDecks } from '../utils/api'
 import { receiveDecks } from '../actions'
 
 class DeckList extends Component {
+  static navigationOptions = {
+    title: 'UdaciCards'
+  }
+
   componentDidMount () {
     getDecks()
       .then(decks => {
@@ -18,7 +22,10 @@ class DeckList extends Component {
 
   renderItem = ({ item }) => {
     return (
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => this.props.navigation.navigate(
+        'Deck',
+        { deck: item }
+        )}>
         <DeckInfo key={item.title} {...item} />
       </TouchableOpacity>
     )
@@ -43,13 +50,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
+    backgroundColor: '#fff'
   }
 })
 
 function mapStateToProps (decks) {
   return {
-    decks: Object.keys(decks).reduce((result, quiz) => {
-      result.push(decks[quiz])
+    decks: Object.keys(decks).reduce((result, deck) => {
+      result.push(decks[deck])
       return result
     }, [])
   }

@@ -41,7 +41,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: '#fff'
   },
   text: {
     fontSize: 28,
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5
   },
-  button: {
+  buttonContainer: {
     backgroundColor: 'black',
     color: 'white'
   }
