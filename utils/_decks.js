@@ -30,3 +30,7 @@ const initialDecks = {
 export const setDummyData = () => {
   AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(initialDecks))
 }
+
+export const clearData = () => {
+  AsyncStorage.clear()
+}

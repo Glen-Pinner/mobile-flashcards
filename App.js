@@ -9,9 +9,10 @@ import reducer from './reducers'
 import DeckList from './components/DeckList'
 import AddDeck from './components/AddDeck'
 import Deck from './components/Deck'
-import { setDummyData } from './utils/_decks'
+import { clearData, setDummyData } from './utils/_decks'
 
 setDummyData()
+// clearData()
 
 const store = createStore(reducer)
 

@@ -6,7 +6,6 @@ class Deck extends Component {
   render () {
     const { deck: { title, questions } } = this.props.navigation.state.params
 
-    console.log('Deck#render', title, questions.length)
     return (
       <View style={styles.container}>
         <Text style={styles.title}>{title}</Text>
@@ -49,8 +48,3 @@ const styles = StyleSheet.create({
 })
 
 export default Deck
-
-/*
-          <TextButton style={{ backgroundColor: 'transparent', color: 'black' }}>
-
- */

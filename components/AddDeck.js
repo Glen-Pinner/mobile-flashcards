@@ -1,28 +1,37 @@
 import React, { Component } from 'react'
 import { View, Text, TextInput, StyleSheet } from 'react-native'
+import { connect } from 'react-redux'
 import TextButton from './TextButton'
+import { addDeck } from '../actions'
+import { saveDeckTitle } from '../utils/api'
 
 class AddDeck extends Component {
   state = {
-    text: ''
+    title: ''
   }
 
-  onChangeText = text => {
-    this.setState({ text })
+  onChangeText = title => {
+    this.setState({ title })
   }
 
   onSubmit = () => {
-    console.log("onSubmit", this.state.text)
+    const { title } = this.state
 
     // Dispatch to redux
+    this.props.dispatch(addDeck(title))
 
-    // Update local store
+    // Reset local state
+    this.setState(() => ({ title: ' ' }))
 
     // navigate to Deck component
 
+    // Update local store
+    saveDeckTitle(title)
   }
 
   render () {
+    const { title } = this.state
+
     return (
       <View style={styles.container}>
         <Text style={styles.text}>What is the title of your new deck?</Text>
@@ -30,6 +39,7 @@ class AddDeck extends Component {
           style={styles.input}
           onChangeText={this.onChangeText}
           placeholder='Deck Title'
+          value={title}
         />
         <TextButton onPress={this.onSubmit}>Submit</TextButton>
       </View>
@@ -63,4 +73,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default AddDeck
+export default connect()(AddDeck)
