@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, TextInput, StyleSheet } from 'react-native'
+import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
 import TextButton from './TextButton'
 import { addDeck } from '../actions'
@@ -24,9 +25,30 @@ class AddDeck extends Component {
     this.setState(() => ({ title: ' ' }))
 
     // navigate to Deck component
+    this.toDeck(title)
 
     // Update local store
     saveDeckTitle(title)
+  }
+
+  toDeck = title => {
+    this.props.navigation.dispatch(NavigationActions.reset({
+      index: 1,
+      actions: [
+        NavigationActions.navigate({
+          routeName: 'Home'
+        }),
+        NavigationActions.navigate({
+          routeName: 'Deck',
+          params: {
+            deck: {
+              title,
+              questions: []
+            }
+          }
+        })
+      ]
+    }))
   }
 
   render () {
