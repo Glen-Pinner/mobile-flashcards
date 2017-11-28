@@ -6,10 +6,6 @@ import { getDecks } from '../utils/api'
 import { receiveDecks } from '../actions'
 
 class DeckList extends Component {
-  static navigationOptions = {
-    headerBackTitle: 'UdaciCards'
-  }
-
   componentDidMount () {
     getDecks()
       .then(decks => {

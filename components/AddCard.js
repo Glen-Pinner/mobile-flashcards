@@ -3,6 +3,10 @@ import { View, TextInput, StyleSheet } from 'react-native'
 import TextButton from './TextButton'
 
 class AddCard extends Component {
+  static navigationOptions = {
+    headerTitle: 'Add Card',
+  }
+
   state = {
     question: '',
     answer: ''

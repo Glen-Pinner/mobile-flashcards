@@ -10,6 +10,7 @@ import DeckList from './components/DeckList'
 import AddDeck from './components/AddDeck'
 import Deck from './components/Deck'
 import AddCard from './components/AddCard'
+import Quiz from './components/Quiz'
 import { clearData, setDummyData } from './utils/_decks'
 
 setDummyData()
@@ -64,9 +65,10 @@ const MainNavigator = StackNavigator({
     navigationOptions: {
       headerTintColor: '#fff',
       headerStyle: {
-        marginTop: -20, // compensate for styling introduced by StackNavigator
+        marginTop: -20,       // compensate for styling introduced by StackNavigator
         backgroundColor: '#2c3e50',
-      }
+      },
+      headerBackTitle: null   // disable "back" heading for subscreens
     }
   },
   AddCard: {
@@ -74,7 +76,17 @@ const MainNavigator = StackNavigator({
     navigationOptions: {
       headerTintColor: '#fff',
       headerStyle: {
-        marginTop: -20, // compensate for styling introduced by StackNavigator
+        marginTop: -20,       // compensate for styling introduced by StackNavigator
+        backgroundColor: '#2c3e50',
+      }
+    }
+  },
+  Quiz: {
+    screen: Quiz,
+    navigationOptions: {
+      headerTintColor: '#fff',
+      headerStyle: {
+        marginTop: -20,       // compensate for styling introduced by StackNavigator
         backgroundColor: '#2c3e50',
       }
     }
