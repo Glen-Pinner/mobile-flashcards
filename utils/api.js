@@ -14,3 +14,17 @@ export const saveDeckTitle = title => {
     }
   }))
 }
+
+export const addCardToDeck = (title, card) => {
+  return AsyncStorage.getItem(DECKS_STORAGE_KEY)
+    .then(results => {
+      const data = JSON.parse(results)
+      const questions = data[title].questions.concat(card)
+
+      AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify({
+        [title]: {
+          questions
+        }
+      }))
+    })
+}

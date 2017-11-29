@@ -3,6 +3,7 @@ import { View, TextInput, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import TextButton from './TextButton'
 import { addCard } from '../actions'
+import { addCardToDeck } from '../utils/api'
 
 class AddCard extends Component {
   static navigationOptions = {
@@ -43,6 +44,7 @@ class AddCard extends Component {
     this.props.navigation.goBack()
 
     // Update local store
+    addCardToDeck(title, { question, answer })
   }
 
   render () {
