@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, TextInput, StyleSheet } from 'react-native'
+import { View, Text, TextInput, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import TextButton from './TextButton'
 import { addCard } from '../actions'
@@ -12,7 +12,8 @@ class AddCard extends Component {
 
   state = {
     question: '',
-    answer: ''
+    answer: '',
+    warning: false
   }
 
   onChangeQuestion = question => {
@@ -27,8 +28,9 @@ class AddCard extends Component {
     const { question, answer } = this.state
     const { title } = this.props.navigation.state.params
 
-    if (!question && !answer) {
-      // Alert user
+    // Alert user if card is incomplete
+    if (!question || !answer) {
+      return this.setState({ warning: true })
     }
 
     // Dispatch to Redux
@@ -37,7 +39,8 @@ class AddCard extends Component {
     // Reset local state
     this.setState({
       question: '',
-      answer: ''
+      answer: '',
+      warning: false
     })
 
     // Navigate back to Deck view
@@ -47,8 +50,19 @@ class AddCard extends Component {
     addCardToDeck(title, { question, answer })
   }
 
+  onRetry = () => this.setState({ warning: false })
+
   render () {
-    const { question, answer } = this.state
+    const { question, answer, warning } = this.state
+
+    if (warning) {
+      return (
+        <View style={styles.center}>
+          <Text style={styles.warningText}>You must enter a question and an answer!</Text>
+          <TextButton onPress={this.onRetry}>Try again</TextButton>
+        </View>
+      )
+    }
 
     return (
       <View style={styles.container}>
@@ -85,6 +99,17 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5
   },
+  center: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff'
+  },
+  warningText: {
+    fontSize: 28,
+    textAlign: 'center',
+    marginBottom: 30
+  }
 })
 
 export default connect()(AddCard)
