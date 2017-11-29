@@ -40,6 +40,7 @@ class AddCard extends Component {
     })
 
     // Navigate back to Deck view
+    this.props.navigation.goBack()
 
     // Update local store
   }

@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
+import { connect } from 'react-redux'
 import TextButton from './TextButton'
 
 class Deck extends Component {
   static navigationOptions = ({ navigation }) => {
     const { deck: { title } } = navigation.state.params
-
     return { headerTitle: title }
   }
 
   render () {
-    const { deck: { title, questions } } = this.props.navigation.state.params
+    const { title, questions } = this.props
 
     return (
       <View style={styles.container}>
@@ -56,4 +56,11 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Deck
+function mapStateToProps (state, ownProps) {
+  const { deck: { title } } = ownProps.navigation.state.params
+  const questions = state[title].questions
+
+  return { title, questions }
+}
+
+export default connect(mapStateToProps)(Deck)
