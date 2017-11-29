@@ -9,14 +9,6 @@ class Deck extends Component {
     return { headerTitle: title }
   }
 
-  onAddCard = () => {
-    this.props.navigation.navigate('AddCard')
-  }
-
-  onStartQuiz = () => {
-    this.props.navigation.navigate('Quiz')
-  }
-
   render () {
     const { deck: { title, questions } } = this.props.navigation.state.params
 
@@ -26,14 +18,14 @@ class Deck extends Component {
         <Text style={styles.cards}>{questions.length} cards</Text>
         <View style={styles.buttonContainer}>
           <TextButton
-            onPress={this.onAddCard}
+            onPress={() => this.props.navigation.navigate('AddCard', { title })}
             style={{ backgroundColor: 'transparent', color: 'black' }}
           >
             Add Card
           </TextButton>
         </View>
         <View style={styles.buttonContainer}>
-          <TextButton onPress={this.onStartQuiz}>
+          <TextButton onPress={() => this.props.navigation.navigate('Quiz')}>
             Start Quiz
           </TextButton>
         </View>

@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { View, TextInput, StyleSheet } from 'react-native'
+import { connect } from 'react-redux'
 import TextButton from './TextButton'
+import { addCard } from '../actions'
 
 class AddCard extends Component {
   static navigationOptions = {
@@ -13,25 +15,29 @@ class AddCard extends Component {
   }
 
   onChangeQuestion = question => {
-    console.log(question)
     this.setState({ question })
   }
 
   onChangeAnswer = answer => {
-    console.log(answer)
     this.setState({ answer })
   }
 
   onSubmit = () => {
     const { question, answer } = this.state
+    const { title } = this.props.navigation.state.params
 
     if (!question && !answer) {
       // Alert user
     }
 
     // Dispatch to Redux
+    this.props.dispatch(addCard(title, { question, answer }))
 
     // Reset local state
+    this.setState({
+      question: '',
+      answer: ''
+    })
 
     // Navigate back to Deck view
 
@@ -78,4 +84,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default AddCard
+export default connect()(AddCard)
