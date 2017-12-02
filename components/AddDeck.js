@@ -8,7 +8,8 @@ import { saveDeckTitle } from '../utils/api'
 
 class AddDeck extends Component {
   state = {
-    title: ''
+    title: '',
+    warning: false
   }
 
   onChangeTitle = title => {
@@ -17,6 +18,11 @@ class AddDeck extends Component {
 
   onSubmit = () => {
     const { title } = this.state
+
+    // Alert user if no title is entered
+    if (!title) {
+      return this.setState({ warning: true })
+    }
 
     // Dispatch to Redux
     this.props.dispatch(addDeck(title))
@@ -51,8 +57,19 @@ class AddDeck extends Component {
     }))
   }
 
+  onRetry = () => this.setState({ warning: false })
+
   render () {
-    const { title } = this.state
+    const { title, warning } = this.state
+
+    if (warning) {
+      return (
+        <View style={styles.center}>
+          <Text style={styles.warningText}>You forgot to enter a title!</Text>
+          <TextButton border onPress={this.onRetry}>Try again</TextButton>
+        </View>
+      )
+    }
 
     return (
       <View style={styles.container}>
@@ -63,7 +80,7 @@ class AddDeck extends Component {
           placeholder='Deck Title'
           value={title}
         />
-        <TextButton onPress={this.onSubmit}>Submit</TextButton>
+        <TextButton border onPress={this.onSubmit}>Submit</TextButton>
       </View>
     )
   }
@@ -88,6 +105,17 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderWidth: 1,
     borderRadius: 5
+  },
+  center: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff'
+  },
+  warningText: {
+    fontSize: 28,
+    textAlign: 'center',
+    marginBottom: 30
   },
   buttonContainer: {
     backgroundColor: 'black',
