@@ -1,10 +1,10 @@
 import React from 'react'
 import { Text, TouchableOpacity, StyleSheet } from 'react-native'
 
-const TextButton = ({ children, onPress, style = {} }) => {
+const TextButton = ({ children, onPress, buttonStyle = {}, textStyle = {} }) => {
   return (
-    <TouchableOpacity onPress={onPress} style={styles.container}>
-      <Text style={[styles.text, style]}>{children}</Text>
+    <TouchableOpacity onPress={onPress} style={[styles.container, buttonStyle]}>
+      <Text style={[styles.text, textStyle]}>{children}</Text>
     </TouchableOpacity>
   )
 }
@@ -12,11 +12,11 @@ const TextButton = ({ children, onPress, style = {} }) => {
 const styles = StyleSheet.create({
   container: {
     borderWidth: 1,
-    borderColor: 'black',
     borderRadius: 5,
+    backgroundColor: 'black',
   },
   text: {
-    backgroundColor: 'black',
+    textAlign: 'center',
     color: 'white',
     fontSize: 18,
     fontWeight: 'bold',
