@@ -9,19 +9,65 @@ class Quiz extends Component {
 
   state = {
     answered: 0,
+    rightAnswers: 0,
     showingQuestion: true
   }
 
   flipCard = () => this.setState({ showingQuestion: !this.state.showingQuestion })
 
+  answeredCorrectly = () => {
+    this.setState({
+      answered: this.state.answered + 1,
+      rightAnswers: this.state.rightAnswers + 1,
+      showingQuestion: true
+    })
+  }
+
+  answeredIncorrectly = () => {
+    this.setState({
+      answered: this.state.answered + 1,
+      showingQuestion: true
+    })
+  }
+
+  restartQuiz = () => {
+    this.setState({
+      answered: 0,
+      rightAnswers: 0,
+      showingQuestion: true
+    })
+  }
+
   render () {
     const { questions } = this.props.navigation.state.params
-    const { answered, showingQuestion } = this.state
+    const { answered, rightAnswers, showingQuestion } = this.state
+
+    if (answered === questions.length) {
+      return (
+        <View style={styles.center}>
+          <Text style={styles.textMedium}>You've completed the quiz!</Text>
+          <Text style={styles.textMedium}>Score: {rightAnswers}/{questions.length}</Text>
+          <TextButton
+            onPress={() => this.restartQuiz()}
+            buttonStyle={{ backgroundColor: 'transparent', marginTop: 10 }}
+            textStyle={{ color: 'black' }}
+          >
+            Restart Quiz
+          </TextButton>
+          <TextButton
+            buttonStyle={{ marginTop: 10 }}
+            onPress={() => this.props.navigation.goBack()}
+          >
+            Back to Deck
+          </TextButton>
+        </View>
+      )
+    }
 
     return (
       <View style={styles.container}>
         <View style={styles.summary}>
-          <Text>1/3</Text>
+          <Text style={{ fontSize: 18, fontWeight: '500' }}>{answered}/{questions.length}</Text>
         </View>
         {showingQuestion ?
          <View style={styles.question}>
@@ -49,6 +95,7 @@ class Quiz extends Component {
         <View style={styles.buttons}>
           <View>
             <TextButton
+              onPress={() => this.answeredCorrectly()}
               buttonStyle={styles.correctBtn}
               textStyle={{ width: 200 }}>
               Correct
@@ -56,6 +103,7 @@ class Quiz extends Component {
           </View>
           <View>
             <TextButton
+              onPress={() => this.answeredIncorrectly()}
               buttonStyle={styles.incorrectBtn}
               textStyle={{ width: 200 }}>
               Incorrect
@@ -75,6 +123,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff'
   },
   summary: {
+    flex: 1,
+    flexDirection: 'row',
+    alignSelf: 'flex-start',
   },
   question: {
     flex: 4,
@@ -104,6 +155,17 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
     borderColor: 'red',
     marginTop: 10
+  },
+  center: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff'
+  },
+  textMedium: {
+    fontSize: 18,
+    textAlign: 'center',
+    padding: 10
   }
 })
 

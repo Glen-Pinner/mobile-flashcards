@@ -19,8 +19,8 @@ class Deck extends Component {
         <View style={styles.buttonContainer}>
           <TextButton
             onPress={() => this.props.navigation.navigate('AddCard', { title })}
-            buttonStyle={{backgroundColor: 'transparent'}}
-            textStyle={{color: 'black'}}
+            buttonStyle={{ backgroundColor: 'transparent' }}
+            textStyle={{ color: 'black' }}
           >
             Add Card
           </TextButton>
