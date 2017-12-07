@@ -11,10 +11,10 @@ import AddDeck from './components/AddDeck'
 import Deck from './components/Deck'
 import AddCard from './components/AddCard'
 import Quiz from './components/Quiz'
-import { setDummyData } from './utils/_decks'
 import { setLocalNotification } from './utils/helpers'
 
-setDummyData()
+// import { clearData } from './utils/_decks'
+// clearData()
 
 const store = createStore(reducer)
 

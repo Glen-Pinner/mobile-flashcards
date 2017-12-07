@@ -52,12 +52,12 @@ class Quiz extends Component {
       return (
         <View style={styles.center}>
           <Text style={styles.textMedium}>You've completed the quiz!</Text>
-          <Text style={styles.textMedium}>Score: {rightAnswers}/{questions.length}</Text>
+          <Text style={[styles.textMedium, { fontSize: 18 }]}>Score: {rightAnswers}/{questions.length}</Text>
 
           {/* Restart the quiz */}
           <TextButton
             onPress={() => this.restartQuiz()}
-            buttonStyle={{ backgroundColor: 'transparent', marginTop: 10 }}
+            buttonStyle={{ backgroundColor: 'transparent', marginTop: 20 }}
             textStyle={{ color: 'black' }}
           >
             Restart Quiz
@@ -65,7 +65,7 @@ class Quiz extends Component {
 
           {/* Return to previous screen */}
           <TextButton
-            buttonStyle={{ marginTop: 10 }}
+            buttonStyle={{ marginTop: 20 }}
             onPress={() => this.props.navigation.goBack()}
           >
             Back to Deck
@@ -159,7 +159,8 @@ const styles = StyleSheet.create({
   },
   answerBtn: {
     backgroundColor: 'transparent',
-    borderColor: 'transparent'
+    borderColor: 'transparent',
+    marginTop: 10
   },
   correctBtn: {
     backgroundColor: 'green',
@@ -173,12 +174,14 @@ const styles = StyleSheet.create({
   },
   center: {
     flex: 1,
+    marginTop: -40,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#fff'
   },
   textMedium: {
-    fontSize: 18,
+    fontSize: 24,
+    fontWeight: '500',
     textAlign: 'center',
     padding: 10
   }
