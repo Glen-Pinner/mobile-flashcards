@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, TextInput, StyleSheet } from 'react-native'
+import { KeyboardAvoidingView, Text, TextInput, StyleSheet } from 'react-native'
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
 import TextButton from './TextButton'
@@ -64,15 +64,15 @@ class AddDeck extends Component {
 
     if (warning) {
       return (
-        <View style={styles.center}>
+        <KeyboardAvoidingView behavior='padding' style={styles.center}>
           <Text style={styles.warningText}>You forgot to enter a title!</Text>
           <TextButton border onPress={this.onRetry}>Try again</TextButton>
-        </View>
+        </KeyboardAvoidingView>
       )
     }
 
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView behavior='padding' style={styles.container}>
         <Text style={styles.text}>What is the title of your new deck?</Text>
         <TextInput
           style={styles.input}
@@ -81,7 +81,7 @@ class AddDeck extends Component {
           value={title}
         />
         <TextButton border onPress={this.onSubmit}>Submit</TextButton>
-      </View>
+      </KeyboardAvoidingView>
     )
   }
 }
@@ -101,6 +101,7 @@ const styles = StyleSheet.create({
   input: {
     height: 40,
     width: 200,
+    padding: 8,
     marginBottom: 30,
     borderColor: 'gray',
     borderWidth: 1,

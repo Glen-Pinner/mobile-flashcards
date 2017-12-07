@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import TextButton from './TextButton'
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 
 class Quiz extends Component {
   static navigationOptions = {
@@ -42,11 +43,18 @@ class Quiz extends Component {
     const { questions } = this.props.navigation.state.params
     const { answered, rightAnswers, showingQuestion } = this.state
 
+    // Completed the quiz
     if (answered === questions.length) {
+      // Clear notifications for today and set for tomorrow
+      clearLocalNotification()
+        .then(setLocalNotification)
+
       return (
         <View style={styles.center}>
           <Text style={styles.textMedium}>You've completed the quiz!</Text>
           <Text style={styles.textMedium}>Score: {rightAnswers}/{questions.length}</Text>
+
+          {/* Restart the quiz */}
           <TextButton
             onPress={() => this.restartQuiz()}
             buttonStyle={{ backgroundColor: 'transparent', marginTop: 10 }}
@@ -54,6 +62,8 @@ class Quiz extends Component {
           >
             Restart Quiz
           </TextButton>
+
+          {/* Return to previous screen */}
           <TextButton
             buttonStyle={{ marginTop: 10 }}
             onPress={() => this.props.navigation.goBack()}
@@ -64,11 +74,14 @@ class Quiz extends Component {
       )
     }
 
+    // Main quiz screen with questions and answers
     return (
       <View style={styles.container}>
         <View style={styles.summary}>
           <Text style={{ fontSize: 18, fontWeight: '500' }}>{answered}/{questions.length}</Text>
         </View>
+
+        {/* Representation of 'card' */}
         {showingQuestion ?
          <View style={styles.question}>
            <Text style={styles.text}>{questions[answered].question}</Text>
@@ -92,6 +105,8 @@ class Quiz extends Component {
            </TextButton>
          </View>
         }
+
+        {/* Buttons to answer question */}
         <View style={styles.buttons}>
           <View>
             <TextButton

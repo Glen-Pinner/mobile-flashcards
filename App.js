@@ -11,10 +11,10 @@ import AddDeck from './components/AddDeck'
 import Deck from './components/Deck'
 import AddCard from './components/AddCard'
 import Quiz from './components/Quiz'
-import { clearData, setDummyData } from './utils/_decks'
+import { setDummyData } from './utils/_decks'
+import { setLocalNotification } from './utils/helpers'
 
 setDummyData()
-// clearData()
 
 const store = createStore(reducer)
 
@@ -104,6 +104,10 @@ const UdaciStatusBar = ({ backgroundColor, ...props }) => {
 }
 
 export default class App extends React.Component {
+  componentDidMount () {
+    setLocalNotification()
+  }
+
   render () {
     return (
       <Provider store={store}>

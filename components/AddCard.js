@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, TextInput, StyleSheet } from 'react-native'
+import { KeyboardAvoidingView, Text, TextInput, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import TextButton from './TextButton'
 import { addCard } from '../actions'
@@ -57,15 +57,15 @@ class AddCard extends Component {
 
     if (warning) {
       return (
-        <View style={styles.center}>
+        <KeyboardAvoidingView behavior='padding' style={styles.center}>
           <Text style={styles.warningText}>You must enter a question and an answer!</Text>
           <TextButton onPress={this.onRetry}>Try again</TextButton>
-        </View>
+        </KeyboardAvoidingView>
       )
     }
 
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView behavior='padding' style={styles.container}>
         <TextInput
           style={styles.input}
           onChangeText={this.onChangeQuestion}
@@ -79,7 +79,7 @@ class AddCard extends Component {
           value={answer}
         />
         <TextButton onPress={this.onSubmit}>Submit</TextButton>
-      </View>
+      </KeyboardAvoidingView>
     )
   }
 }
@@ -87,13 +87,15 @@ class AddCard extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 80,
+    marginTop: -40,
+    justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#fff'
   },
   input: {
     height: 40,
     width: '80%',
+    padding: 8,
     marginBottom: 30,
     borderColor: 'gray',
     borderWidth: 1,
