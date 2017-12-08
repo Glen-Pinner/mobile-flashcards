@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import DeckInfo from './DeckInfo'
 import { getDecks } from '../utils/api'
 import { receiveDecks } from '../actions'
+import { white } from '../utils/colours'
 
 class DeckList extends Component {
   componentDidMount () {
@@ -46,7 +47,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: '#fff'
+    backgroundColor: white
   }
 })
 

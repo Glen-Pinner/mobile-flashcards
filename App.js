@@ -12,6 +12,7 @@ import Deck from './components/Deck'
 import AddCard from './components/AddCard'
 import Quiz from './components/Quiz'
 import { setLocalNotification } from './utils/helpers'
+import { midnight_blue } from './utils/colours'
 
 // import { clearData } from './utils/_decks'
 // clearData()
@@ -66,7 +67,7 @@ const MainNavigator = StackNavigator({
       headerTintColor: '#fff',
       headerStyle: {
         marginTop: -20,       // compensate for styling introduced by StackNavigator
-        backgroundColor: '#2c3e50',
+        backgroundColor: midnight_blue,
       },
       headerBackTitle: null   // disable "back" heading for subscreens
     }
@@ -77,7 +78,7 @@ const MainNavigator = StackNavigator({
       headerTintColor: '#fff',
       headerStyle: {
         marginTop: -20,       // compensate for styling introduced by StackNavigator
-        backgroundColor: '#2c3e50',
+        backgroundColor: midnight_blue,
       }
     }
   },
@@ -87,7 +88,7 @@ const MainNavigator = StackNavigator({
       headerTintColor: '#fff',
       headerStyle: {
         marginTop: -20,       // compensate for styling introduced by StackNavigator
-        backgroundColor: '#2c3e50',
+        backgroundColor: midnight_blue,
       }
     }
   }
@@ -112,7 +113,7 @@ export default class App extends React.Component {
     return (
       <Provider store={store}>
         <View style={{ flex: 1 }}>
-          <UdaciStatusBar backgroundColor='#2c3e50' barStyle='light-content' />
+          <UdaciStatusBar backgroundColor={midnight_blue} barStyle='light-content' />
           <MainNavigator />
         </View>
       </Provider>

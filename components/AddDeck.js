@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import TextButton from './TextButton'
 import { addDeck } from '../actions'
 import { saveDeckTitle } from '../utils/api'
+import { midnight_blue, black, white } from '../utils/colours'
 
 class AddDeck extends Component {
   state = {
@@ -91,7 +92,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff'
+    backgroundColor: white
   },
   text: {
     fontSize: 28,
@@ -103,7 +104,7 @@ const styles = StyleSheet.create({
     width: 200,
     padding: 8,
     marginBottom: 30,
-    borderColor: 'gray',
+    borderColor: midnight_blue,
     borderWidth: 1,
     borderRadius: 5
   },
@@ -111,7 +112,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff'
+    backgroundColor: white
   },
   warningText: {
     fontSize: 28,
@@ -119,8 +120,8 @@ const styles = StyleSheet.create({
     marginBottom: 30
   },
   buttonContainer: {
-    backgroundColor: 'black',
-    color: 'white'
+    backgroundColor: black,
+    color: white
   }
 })
 

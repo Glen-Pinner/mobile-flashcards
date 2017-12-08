@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import TextButton from './TextButton'
 import { addCard } from '../actions'
 import { addCardToDeck } from '../utils/api'
+import { midnight_blue, white } from '../utils/colours'
 
 class AddCard extends Component {
   static navigationOptions = {
@@ -90,14 +91,14 @@ const styles = StyleSheet.create({
     marginTop: -40,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff'
+    backgroundColor: white
   },
   input: {
     height: 40,
     width: '80%',
     padding: 8,
     marginBottom: 30,
-    borderColor: 'gray',
+    borderColor: midnight_blue,
     borderWidth: 1,
     borderRadius: 5
   },
@@ -105,7 +106,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff'
+    backgroundColor: white
   },
   warningText: {
     fontSize: 28,

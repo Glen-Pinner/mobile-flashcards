@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import TextButton from './TextButton'
 import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
+import { nephritis, alizarin, white } from '../utils/colours'
 
 class Quiz extends Component {
   static navigationOptions = {
@@ -163,13 +164,13 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   correctBtn: {
-    backgroundColor: 'green',
-    borderColor: 'green',
+    backgroundColor: nephritis,
+    borderColor: nephritis,
     marginTop: 10
   },
   incorrectBtn: {
-    backgroundColor: 'red',
-    borderColor: 'red',
+    backgroundColor: alizarin,
+    borderColor: alizarin,
     marginTop: 10
   },
   center: {
@@ -177,7 +178,7 @@ const styles = StyleSheet.create({
     marginTop: -40,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff'
+    backgroundColor: white
   },
   textMedium: {
     fontSize: 24,

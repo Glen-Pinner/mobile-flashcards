@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import TextButton from './TextButton'
+import { midnight_blue, silver, white } from '../utils/colours'
 
 class Deck extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -20,7 +21,7 @@ class Deck extends Component {
           <TextButton
             onPress={() => this.props.navigation.navigate('AddCard', { title })}
             buttonStyle={{ backgroundColor: 'transparent' }}
-            textStyle={{ color: 'black' }}
+            textStyle={{ color: midnight_blue }}
           >
             Add Card
           </TextButton>
@@ -42,7 +43,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff'
+    backgroundColor: white
   },
   title: {
     fontSize: 28,
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
   },
   cards: {
     fontSize: 18,
-    color: '#999',
+    color: silver,
     marginBottom: 20
   },
   buttonContainer: {
