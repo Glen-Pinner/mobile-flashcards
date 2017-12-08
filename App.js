@@ -12,7 +12,7 @@ import Deck from './components/Deck'
 import AddCard from './components/AddCard'
 import Quiz from './components/Quiz'
 import { setLocalNotification } from './utils/helpers'
-import { midnight_blue } from './utils/colours'
+import { midnight_blue, clouds, white } from './utils/colours'
 
 // import { clearData } from './utils/_decks'
 // clearData()
@@ -24,14 +24,14 @@ const Tabs = TabNavigator({
     screen: DeckList,
     navigationOptions: {
       tabBarLabel: 'DECKS',
-      tabBarIcon: <Entypo name='list' size={24} />
+      tabBarIcon: ({ tintColor }) => <Entypo name='list' size={24} color={tintColor} />
     }
   },
   AddDeck: {
     screen: AddDeck,
     navigationOptions: {
       tabBarLabel: 'NEW DECK',
-      tabBarIcon: <Entypo name='add-to-list' size={24} />
+      tabBarIcon: ({ tintColor }) => <Entypo name='add-to-list' size={24} color={tintColor} />
     }
   }
 }, {
@@ -39,8 +39,9 @@ const Tabs = TabNavigator({
     header: null
   },
   tabBarOptions: {
+    activeTintColor: midnight_blue,
     style: {
-      backgroundColor: '#eee',
+      backgroundColor: clouds,
       shadowColor: 'rgba(0, 0, 0, 0.24)',
       shadowOffset: {
         width: 0,
@@ -57,14 +58,14 @@ const MainNavigator = StackNavigator({
     screen: Tabs,
     navigationOptions: {
       headerStyle: {
-        color: '#fff'
+        color: clouds
       }
     }
   },
   Deck: {
     screen: Deck,
     navigationOptions: {
-      headerTintColor: '#fff',
+      headerTintColor: clouds,
       headerStyle: {
         marginTop: -20,       // compensate for styling introduced by StackNavigator
         backgroundColor: midnight_blue,
@@ -75,7 +76,7 @@ const MainNavigator = StackNavigator({
   AddCard: {
     screen: AddCard,
     navigationOptions: {
-      headerTintColor: '#fff',
+      headerTintColor: clouds,
       headerStyle: {
         marginTop: -20,       // compensate for styling introduced by StackNavigator
         backgroundColor: midnight_blue,
@@ -85,7 +86,7 @@ const MainNavigator = StackNavigator({
   Quiz: {
     screen: Quiz,
     navigationOptions: {
-      headerTintColor: '#fff',
+      headerTintColor: clouds,
       headerStyle: {
         marginTop: -20,       // compensate for styling introduced by StackNavigator
         backgroundColor: midnight_blue,
